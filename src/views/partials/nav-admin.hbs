@@ -1,0 +1,20 @@
+<ul class="nav nav-tabs mt-3 mb-2">
+  <li class="nav-item">
+    <a class="nav-link {{#ifEq action "videos"}}active{{/ifEq}}" href="/admin/videos">
+      {{#ifEq role "teacher"}}Your {{/ifEq}}Videos
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link {{#ifEq action "playlists"}}active{{/ifEq}}" href="/admin/playlists">
+      {{#ifEq role "teacher"}}Your {{/ifEq}}Playlists
+    </a>
+  </li>
+  {{#ifEq role "admin"}}
+    <li class="nav-item">
+      <a class="nav-link {{#ifEq action "topics"}}active{{/ifEq}}" href="/admin/topics">Topics</a>
+    </li>  
+    <li class="nav-item">
+      <a class="nav-link {{#ifEq action "users"}}active{{/ifEq}}" href="/admin/users">Users</a>
+    </li>  
+  {{/ifEq}}
+</ul>

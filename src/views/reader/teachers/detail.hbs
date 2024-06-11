@@ -1,0 +1,42 @@
+{{> modal}}
+
+<div class="row">
+  <div class="col-8">
+    <h1>{{teacher.usermeta.firstname}} {{teacher.usermeta.lastname}}</h1>
+    <h5>Username: {{teacher.usermeta.username}}</h5>
+  </div>
+  <div class="col-4 d-flex flex-row justify-content-end align-items-center">
+    <a href="/teachers/{{teacher.id}}">
+      <img loading="lazy"
+          {{#if (contains teacher.usermeta.avatar "ui-avatars" )}} src="{{teacher.usermeta.avatar}}"
+          {{else}} src="/images/avatars/{{teacher.usermeta.avatar}}"
+          {{/if}}
+          title="{{teacher.usermeta.firstname}} {{teacher.usermeta.lastname}}"
+          class="card-img-top card-img-playlist rounded-circle" alt="teacher">
+    </a>
+  </div>
+</div>
+
+<h3 class="mt-3">Playlists</h3>
+{{#ifEq playlists.length 0}}
+  <div class="mt-5 text-primary text-center fs-3">No playlists.</div>
+{{else}}
+  <div class="list-group">
+    {{#each playlists}}
+    <a href="/playlists/{{id}}" class="list-group-item list-group-item-action">{{name}}</a>
+    {{/each}}
+  </div>
+{{/ifEq}}
+
+<h3 class="mt-3">Videos</h3>
+{{#ifEq videos.length 0}}
+  <div class="mt-5 text-primary text-center fs-3">No videos.</div>
+{{else}}
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 gx-2 gy-4 mt-2 mb-5">
+    {{#each videos}}
+      {{> card-video}}
+    {{/each}}
+  </div>
+{{/ifEq}}
+
+<script src="/js/watch-video.js"></script>

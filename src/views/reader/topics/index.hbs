@@ -1,0 +1,50 @@
+<div class="row">
+  <div class="col-6">
+    <h1>Topics</h1>
+  </div>
+  <div class="col-6 d-flex flex-row justify-content-end align-items-center">
+    <form action="/topics" method="get">
+      <div class="input-group">
+        <input type="text" name="topic" class="form-control" list="topicOptions" placeholder="Filter by topic">
+        <datalist id="topicOptions">
+          {{#each allTopics}}
+            <option value="{{name}}">
+          {{/each}}
+        </datalist>
+        <button class="btn btn-outline-secondary" class="btn btn-primary" type="submit">
+          Filter
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+{{#ifEq topics.length 0}}
+
+  <div class="mt-5 text-primary text-center fs-3">Sorry, no results were found for topic: {{filterByTopic}}</div>
+
+{{else}}
+
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 gx-2 gy-4 mt-2 mb-5">
+    {{#each topics}}
+      <div class="col d-flex justify-content-center">
+        <a href="/topics/{{id}}" class="view-topic d-flex justify-content-center">
+          <div class="card card-topic h-100">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-8 d-flex flex-column justify-content-center">
+                  <h5 class="card-title">{{name}}</h5>
+                </div>
+                <div class="col-4">
+                  <img src="/images/topics/{{icon}}" loading="lazy" 
+                      class="card-img-top card-img-topic" alt="topic">
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    {{/each}}
+  </div>
+
+{{/ifEq}}

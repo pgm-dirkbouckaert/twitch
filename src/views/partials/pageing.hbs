@@ -1,0 +1,17 @@
+{{#if previousPage}}
+  <a href="{{prefix}}?page={{previousPage}}" title="Previous page">
+    <i class="fa-solid fa-angles-left color-primary fs-4 me-2"></i></a>
+{{else}}
+  {{#if (isGt totalItems itemsPerPage)}}
+    <i class="fa-solid fa-angles-left text-body-tertiary fs-4 me-2"></i>
+  {{/if}}
+{{/if}}
+
+{{#if nextPage}}
+  <a href="{{prefix}}?page={{nextPage}}"  title="Next page">
+    <i class="fa-solid fa-angles-right color-primary fs-4 ms-2"></i></a>
+{{else}}
+  {{#if (isGt totalItems itemsPerPage)}}
+    <i class="fa-solid fa-angles-right text-body-tertiary fs-4 ms-2"></i>
+  {{/if}}
+{{/if}}

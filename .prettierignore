@@ -1,0 +1,10 @@
+src/middleware/validation/login.js
+src/middleware/validation/register.js
+src/middleware/validation/account.js
+src/middleware/validation/avatar.js
+src/middleware/validation/password.js
+src/middleware/validation/video.js
+src/middleware/validation/playlist.js
+src/middleware/validation/topic.js
+src/middleware/validation/user-admin-edit.js
+src/middleware/validation/user-admin-create.js

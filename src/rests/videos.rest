@@ -1,0 +1,68 @@
+@baseUrl = http://localhost:3000/api 
+
+# token for reader
+# @token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6InJlYWRlciIsImlhdCI6MTY4MDc3NDIyNiwiZXhwIjoxNjgwODYwNjI2fQ.ia-KraCfj1HBom66M0ehtIppblEEwwJYR0_1KJScYP8
+
+# token for teacher
+# @token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6InRlYWNoZXIiLCJpYXQiOjE2ODA3NzQyNDUsImV4cCI6MTY4MDg2MDY0NX0.DLMx8cPtpWtLxZkMYB12aj_Hy-P_UjqMd8sFnZFVMAQ
+
+# token for admin
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywicm9sZSI6ImFkbWluIiwiaWF0IjoxNjgwOTU0OTA5LCJleHAiOjE2ODEwNDEzMDl9.JCdVbKK_hPMVi6zalfPKut-Ue9bUu48OajxrmwP3qwk
+
+# Get all videos
+GET {{baseUrl}}/videos HTTP/1.1
+Authorization: Bearer {{token}}
+
+###
+# Get a video by id
+GET {{baseUrl}}/videos/166 HTTP/1.1
+Authorization: Bearer {{token}}
+
+###
+# Create a new video
+POST {{baseUrl}}/videos HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "topic_id": 2,
+  "name": "JavaScript Programming - Full Course",
+  "thumbnail": "https://i.ytimg.com/vi_webp/jS4aFq5-91M/maxresdefault.webp",
+  "youtube_id": "jS4aFq5-91M",
+  "user_id": 2
+}
+
+# {
+#   "topic_id": 24,
+#   "name": "The Great Gatsby",
+#   "thumbnail": "https://i.ytimg.com/vi/rARN6agiW7o/maxresdefault.jpg",
+#   "youtube_id": "rARN6agiW7o",
+#   "user_id": 63
+# }
+
+###
+# Update a video
+PUT {{baseUrl}}/videos HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "id": 144,
+  "name": "Angular Crash Course Update"
+}
+
+# {
+#   "id": 170,
+#   "topic_id": 2,
+#   "teacher_id": 2
+# }
+
+###
+# Delete a video
+DELETE {{baseUrl}}/videos HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "id": 171
+}

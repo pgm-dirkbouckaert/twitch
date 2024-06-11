@@ -1,0 +1,16 @@
+{{> modal}}
+
+<h1>Your stars</h1>
+
+{{#ifEq videos.length 0}}
+<div class="mt-5 text-primary text-center fs-3">No stars.</div>
+{{else}}
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 gx-2 gy-4 mt-2 mb-5">
+  {{#each videos}}
+    {{> card-video}}
+  {{/each}}
+</div>
+{{/ifEq}}
+
+
+<script src="/js/watch-video.js"></script>

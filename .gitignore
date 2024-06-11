@@ -1,0 +1,11 @@
+# General
+.env
+.cache
+package-lock.json
+
+# OS specific
+.DS_Store
+
+# Node
+node_modules
+

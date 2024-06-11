@@ -1,0 +1,73 @@
+{{> modal}}
+
+<div class="row">
+  <div class="col"><h1>Dashboard</h1></div>
+  <div class="col d-flex flex-row justify-content-end align-items-center">
+    <a href="/admin/playlists/create" class="btn btn-outline-success btn-sm">Add playlist</a>
+  </div>
+</div>
+
+{{> nav-admin}}
+
+{{!-- FILTER --}}
+<div class="col d-flex flex-row justify-content-start">
+  <form action="/admin/playlists" method="get">
+    <div class="input-group">
+      <input type="text" name="name" class="form-control" list="titleOptions" placeholder="Filter by title">
+      <datalist id="titleOptions">
+        {{#each allPlaylists}}
+          <option value="{{name}}">
+        {{/each}}
+      </datalist>
+      <button class="btn btn-outline-secondary" class="btn btn-primary" type="submit">
+        Filter
+      </button>
+    </div>
+  </form>
+</div>
+
+{{!-- LIST --}}
+{{#ifEq playlists.items.length 0}}
+
+<div class="mt-5 text-primary text-center fs-3">No videos.</div>
+
+{{else}}
+
+<div class="mb-1 d-flex justify-content-end">
+  {{> pageing playlists.pageing prefix=admin/playlists}}
+</div>
+<table class="table table-striped table-bordered table-sm">
+  <thead>
+    <tr>
+      <th width="25">ID</th>
+      {{#ifEq role "admin"}}<th width="150">Teacher</th>{{/ifEq}}
+      <th>Title</th>
+      <th width="100">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each playlists.items}}
+    <tr>
+      <td>{{id}}</td>
+      {{#ifEq @root.role "admin"}}
+      <td><a href="/teachers/{{user.id}}">{{user.usermeta.firstname}} {{user.usermeta.lastname}}</a></td>
+      {{/ifEq}}
+      <td><a href="/playlists/{{id}}">{{name}}</a></td>
+      <td class="d-flex flex-row justify-content-between align-items-center px-2">
+        <a href="/playlists/{{id}}"><i class="fa-regular fa-eye hover" role="button"></i></a>
+        <a href="/admin/playlists/{{id}}"><i class="fa-regular fa-pen-to-square hover" role="button"></i></a>
+        <i class="fa-regular fa-trash-can hover btn-delete" role="button"
+           data-action="playlists" data-name="{{name}}" data-id="{{id}}" 
+           data-current-page="{{@root.playlists.pageing.currentPage}}"></i>
+      </td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+<div class="mb-1 d-flex justify-content-end">
+  {{> pageing playlists.pageing prefix=admin/playlists}}
+</div>
+
+{{/ifEq}}
+
+<script src="/js/admin-delete.js"></script>

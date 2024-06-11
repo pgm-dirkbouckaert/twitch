@@ -1,0 +1,13 @@
+<h1>Account</h1>
+{{> nav-account}}
+<div class="card card-auth mt-3">
+  <div class="card-body">
+    {{> form-handlerErrors}}
+    <form action="/account/edit" method="post">
+      {{#each inputs}}
+        {{> form-input}}
+      {{/each}}
+      <button type="submit" class="btn btn-primary mt-3">Save</button>
+    </form>
+  </div>
+</div>

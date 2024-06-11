@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="col">
+    <h1>Dashboard</h1>
+  </div>
+  <div class="col d-flex flex-row justify-content-end align-items-center">
+    <a href="/admin/playlists/create" class="btn btn-outline-success btn-sm">Add playlist</a>
+  </div>
+</div>
+
+{{> nav-admin}}
+
+<div class="card card-dashboard mt-3">
+  <div class="card-header">Add playlist</div>
+  <div class="card-body">
+    {{> form-handlerErrors}}
+    <form action="/admin/playlists/create" method="post">
+      {{#each inputs}}
+        {{> form-input}}
+      {{/each}}
+      <div class="mb-3">
+        <label class="form-label">Videos</label>
+        <ul class="list-group" id="video-list"></ul>
+      </div>
+      <div class="mb-3">
+        <input type="text" class="form-control px-2 py-1" id="input-add-video" list="videoOptions"
+               placeholder="Add videos (search by title, id, username)">
+        <i id="btn-add-video" class="fa-regular fa-square-plus float-end pt-1 pe-2 fs-4 hover text-primary" role="button"></i>
+        <datalist id="videoOptions">
+          {{#each allVideos}}
+            <option value="{{name}} | id: {{id}}{{#ifEq @root.role "admin"}} | {{user.usermeta.username}}{{/ifEq}}">
+          {{/each}}
+        </datalist>
+      </div>
+      <button type="submit" class="btn btn-primary hover mt-3">Save</button>
+      <a href="/admin/playlists" class="btn btn-outline-secondary mt-3">Cancel</a>
+    </form>
+  </div>
+</div>
+
+<script src="/js/admin-add-to-list.js"></script>

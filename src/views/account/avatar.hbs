@@ -1,0 +1,19 @@
+<h1>Account</h1>
+{{> nav-account}}
+<div class="card card-auth mt-3">
+  <img 
+  {{#if (contains avatar "ui-avatars")}} src="{{avatar}}" 
+  {{else}} src="/images/avatars/{{avatar}}" 
+  {{/if}}  
+    class="card-img-top card-img-avatar rounded-circle m-auto mt-3" alt="avatar">
+  <div class="card-body">
+    {{> form-handlerErrors}}
+    <form action="/account/avatar" method="post" enctype="multipart/form-data">
+      <input type="file" name="avatar" id="avatar" class="form-control">
+      {{#if error}}
+      <div class="small text-danger">{{error}}</div>
+      {{/if}}
+      <button type="submit" class="btn btn-primary mt-3">Upload</button>
+    </form>
+  </div>
+</div>

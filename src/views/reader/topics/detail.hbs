@@ -1,0 +1,26 @@
+{{> modal}}
+
+<div class="row">
+  <div class="col-8">
+    <h1>{{topic.name}}</h1>
+  </div>
+  <div class="col-4 d-flex flex-row justify-content-end align-items-center">
+    <a href="/topics/{{topic.id}}">
+      <img src="/images/topics/{{topic.icon}}" loading="lazy"
+           class="card-img-top card-img-topic" alt="topic">
+    </a>
+  </div>
+</div>
+
+<h3 class="mt-3">Videos</h3>
+{{#ifEq topic.videos.length 0}}
+  <div class="mt-5 text-primary text-center fs-3">No videos.</div>
+{{else}}
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 gx-2 gy-4 mt-2 mb-5">
+    {{#each topic.videos}}
+      {{> card-video}}
+    {{/each}}
+  </div>
+{{/ifEq}}
+
+<script src="/js/watch-video.js"></script>

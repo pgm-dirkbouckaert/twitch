@@ -1,0 +1,54 @@
+<div class="row">
+  <div class="col-6">
+    <h1>Teachers</h1>
+  </div>
+  <div class="col-6 d-flex flex-row justify-content-end align-items-center">
+    <form action="/teachers" method="get">
+      <div class="input-group">
+        <input type="text" name="username" class="form-control" list="teacherOptions" placeholder="Filter by teacher's username">
+        <datalist id="teacherOptions">
+          {{#each allTeachers}}
+            <option value="{{usermeta.username}}">
+          {{/each}}
+        </datalist>
+        <button class="btn btn-outline-secondary" class="btn btn-primary" type="submit">
+          Filter
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+{{#ifEq teachers.length 0}}
+
+  <div class="mt-5 text-primary text-center fs-3">Sorry, no teachers were found for username: {{filterByUsername}}</div>
+
+{{else}}
+
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 gx-2 gy-4 mt-2 mb-5">
+    {{#each teachers}}
+      <div class="col d-flex justify-content-center">
+        <a href="/teachers/{{id}}" class="view-teacher d-flex justify-content-center">
+          <div class="card card-teacher h-100">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-8 d-flex flex-column justify-content-center">
+                  <h5 class="card-title">{{usermeta.firstname}} {{usermeta.lastname}}</h5>
+                  <small>{{usermeta.username}}</small>
+                </div>
+                <div class="col-4">
+                  <img loading="lazy"
+                      {{#if (contains usermeta.avatar "ui-avatars" )}} src="{{usermeta.avatar}}"
+                      {{else}} src="/images/avatars/{{usermeta.avatar}}"
+                      {{/if}}
+                      class="card-img-top card-img-teacher rounded-circle" alt="teacher">
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    {{/each}}
+  </div>
+
+{{/ifEq}}

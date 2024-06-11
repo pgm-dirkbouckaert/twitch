@@ -1,0 +1,73 @@
+{{> modal}}
+
+<div class="row">
+  <div class="col">
+    <h1>Dashboard</h1>
+  </div>
+  <div class="col d-flex flex-row justify-content-end align-items-center">
+    <a href="/admin/topics/create" class="btn btn-outline-success btn-sm">Add topic</a>
+  </div>
+</div>
+
+{{> nav-admin}}
+
+{{!-- FILTER --}}
+<div class="col d-flex flex-row justify-content-start">
+  <form action="/admin/topics" method="get">
+    <div class="input-group">
+      <input type="text" name="topic" class="form-control" list="topicOptions" placeholder="Filter by name">
+      <datalist id="topicOptions">
+        {{#each allTopics}}
+          <option value="{{name}}">
+        {{/each}}
+      </datalist>
+      <button class="btn btn-outline-secondary" class="btn btn-primary" type="submit">
+        Filter
+      </button>
+    </div>
+  </form>
+</div>
+
+{{!-- LIST --}}
+{{#ifEq topics.items.length 0}}
+
+  <div class="mt-5 text-primary text-center fs-3">No topics.</div>
+
+{{else}}
+
+  <div class="mb-1 d-flex justify-content-end">
+    {{> pageing topics.pageing prefix=admin/topics}}
+  </div>
+  <table class="table table-striped table-bordered table-sm">
+    <thead>
+      <tr>
+        <th width="25">ID</th>
+        <th width="125">Topic</th>
+        <th>Icon</th>
+        <th width="100">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each topics.items}}
+      <tr>
+        <td>{{id}}</td>
+        <td><a href="/topics/{{id}}">{{name}}</a></td>
+        <td><img src="/images/topics/{{icon}}" alt="icon" width="32"></td>
+        <td class="d-flex flex-row justify-content-between align-items-center px-2">
+          <a href="/topics/{{id}}"><i class="fa-regular fa-eye hover" role="button"></i></a>
+          <a href="/admin/topics/{{id}}"><i class="fa-regular fa-pen-to-square hover" role="button"></i></a>
+          <i class="fa-regular fa-trash-can hover btn-delete" role="button"
+            data-action="topics" data-name="{{name}}" data-id="{{id}}"
+            data-current-page="{{@root.topics.pageing.currentPage}}"></i>
+        </td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+  <div class="mb-1 d-flex justify-content-end">
+    {{> pageing topics.pageing prefix=admin/topics}}
+  </div>
+
+{{/ifEq}}
+
+<script src="/js/admin-delete.js"></script>

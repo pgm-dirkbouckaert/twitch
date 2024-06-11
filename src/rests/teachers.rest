@@ -1,0 +1,67 @@
+@baseUrl = http://localhost:3000/api 
+
+# token for reader
+# @token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6InJlYWRlciIsImlhdCI6MTY4MDc3NDIyNiwiZXhwIjoxNjgwODYwNjI2fQ.ia-KraCfj1HBom66M0ehtIppblEEwwJYR0_1KJScYP8
+
+# token for teacher
+# @token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6InRlYWNoZXIiLCJpYXQiOjE2ODA3NzQyNDUsImV4cCI6MTY4MDg2MDY0NX0.DLMx8cPtpWtLxZkMYB12aj_Hy-P_UjqMd8sFnZFVMAQ
+
+# token for admin
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywicm9sZSI6ImFkbWluIiwiaWF0IjoxNjgwNzc0MjY4LCJleHAiOjE2ODA4NjA2Njh9.wpYQuQAT3hSmIa1yTm07qLPbfN-nR9UdrERsDPDShAo
+
+# Get all teachers
+GET {{baseUrl}}/teachers HTTP/1.1
+Authorization: Bearer {{token}}
+
+###
+# Get a teacher by id
+GET {{baseUrl}}/teachers/2 HTTP/1.1
+Authorization: Bearer {{token}}
+
+###
+# Create a new teacher
+POST {{baseUrl}}/teachers HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "firstname": "Third",
+  "lastname": "Teacher",
+  "username": "teacher3",
+  "email": "teacher3@example.com",
+  "password": "artevelde"
+}
+
+###
+# Update a teacher
+PUT {{baseUrl}}/teachers HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+# {
+#   "id": 63,
+#   "email": "teacher2@example.com"
+# }
+
+# {
+#   "id": 63,
+#   "password": "artevelde"
+# }
+
+{
+  "id": 63,
+  "firstname": "Edited",
+  "lastname": "Teacher",
+  "username": "teacher22",
+  "email": "teacher22@example.com"
+}
+
+###
+# Delete a teacher
+DELETE {{baseUrl}}/teachers HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "id": 65
+}

@@ -1,0 +1,11 @@
+<h1>Account</h1>
+{{> nav-account}}
+<div class="card card-auth mt-3">
+  <div class="card-body">
+    Are you interested in becoming {{#ifEq role "reader"}}a teacher{{else}}an admin{{/ifEq}}?<br>
+    Use this form to apply. We will contact you to complete the application procedure.
+    <form action="/account/apply" method="post">
+      <button type="submit" class="btn btn-primary mt-3">Apply</button>
+    </form>
+  </div>
+</div>

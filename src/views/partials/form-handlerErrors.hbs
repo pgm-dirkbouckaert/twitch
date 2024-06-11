@@ -1,0 +1,7 @@
+{{#if handlerErrors}}
+  <ul class="list-group small">
+    {{#each handlerErrors}}
+      <li class="list-group-item list-group-item-danger p-2">{{message}}</li>
+    {{/each}}
+  </ul>
+{{/if}}

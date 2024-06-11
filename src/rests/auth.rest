@@ -1,0 +1,44 @@
+@baseUrl = http://localhost:3000/api
+
+# Login as reader (get api token)
+POST {{baseUrl}}/login HTTP/1.1
+Content-Type: application/json
+
+{
+  "email": "reader@example.com",
+  "password": "artevelde"
+}
+
+###
+# Login as teacher (get api token)
+POST {{baseUrl}}/login HTTP/1.1
+Content-Type: application/json
+
+{
+  "email": "teacher@example.com",
+  "password": "artevelde"
+}
+
+###
+# Login as admin (get api token)
+POST {{baseUrl}}/login HTTP/1.1
+Content-Type: application/json
+
+{
+  "email": "admin@example.com",
+  "password": "artevelde"
+}
+
+
+###
+# Register a new user
+POST {{baseUrl}}/register HTTP/1.1
+Content-Type: application/json
+
+{
+  "firstname": "New",
+  "lastname": "Reader",
+  "username": "reader2",
+  "email": "reader2@example.com",
+  "password": "artevelde"
+}

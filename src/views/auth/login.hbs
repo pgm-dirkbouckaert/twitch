@@ -1,0 +1,19 @@
+<div class="card card-auth">
+  <div class="card-header position-relative">
+    <img src="/images/logo.png" width="35" class="position-absolute top-0 end-0 mt-2 me-2" alt="logo">
+    <h3 class="text-primary">Login</h3>
+  </div>
+  <div class="card-body">
+    {{> flash}}
+    {{> form-handlerErrors}}
+    <form action="/login" method="post">
+      {{#each inputs}}
+        {{> form-input}}
+      {{/each}}
+      <button type="submit" class="btn btn-primary mt-3">Login</button>
+    </form>
+  </div>
+  <div class="card-footer">
+    <a href="/register" class="small">No account yet? Register</a>
+  </div>
+</div>

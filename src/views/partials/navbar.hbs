@@ -1,0 +1,27 @@
+<nav class="navbar navbar-expand-lg fixed-top bg-body-tertiary mb-3">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/"><img src="/images/logo.png" alt="logo"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar"
+            aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbar">
+      <div class="navbar-nav">
+        <a class="nav-link {{#ifEq activeNav "videos"}}active{{/ifEq}}" aria-current="page" href="/">Videos</a>
+        <a class="nav-link {{#ifEq activeNav "playlists"}}active{{/ifEq}}" href="/playlists">Playlists</a>
+        <a class="nav-link {{#ifEq activeNav "teachers"}}active{{/ifEq}}" href="/teachers">Teachers</a>
+        <a class="nav-link {{#ifEq activeNav "topics"}}active{{/ifEq}}" href="/topics">Topics</a>
+        <a class="nav-link {{#ifEq activeNav "stars"}}active{{/ifEq}}" href="/stars">Your stars</a>
+      </div>
+      <div class="navbar-nav ms-auto me-3">
+        {{#unless (isEq role "reader")}}
+          <a class="nav-link {{#ifEq activeNav "admin"}}active color-primary{{/ifEq}}" href="/admin/videos">Dashboard</a>
+        {{/unless}}
+        <a class="nav-link {{#ifEq activeNav "account"}}active color-primary{{/ifEq}}" href="/account">Account</a>
+        <form action="/logout" method="post">
+          <button type="submit" class="nav-link">Logout</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</nav>

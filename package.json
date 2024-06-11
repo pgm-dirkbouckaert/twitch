@@ -1,0 +1,62 @@
+{
+  "name": "op2_twitch",
+  "version": "1.0.0",
+  "description": "A Twitch application",
+  "main": "src/app.js",
+  "scripts": {
+    "start:dev": "nodemon ./src/app.js --config nodemon.json",
+    "seed": "node ./src/database/seeders/seeder.js",
+    "test": "cross-env NODE_ENV=test NODE_OPTIONS=--experimental-vm-modules npx jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pgmgent-pgm-3/opdracht-2---a-twitch-application-pgm-dirkbouckaert.git"
+  },
+  "keywords": [
+    "twitch",
+    "express",
+    "nodejs"
+  ],
+  "author": "Dirk Bouckaert",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pgmgent-pgm-3/opdracht-2---a-twitch-application-pgm-dirkbouckaert/issues"
+  },
+  "homepage": "https://github.com/pgmgent-pgm-3/opdracht-2---a-twitch-application-pgm-dirkbouckaert#readme",
+  "type": "module",
+  "dependencies": {
+    "@faker-js/faker": "^7.6.0",
+    "bcrypt": "^5.1.0",
+    "body-parser": "^1.20.2",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-handlebars": "^7.0.4",
+    "express-validator": "^6.15.0",
+    "handlebars": "^4.7.7",
+    "jsonwebtoken": "^9.0.0",
+    "method-override": "^3.0.0",
+    "multer": "^1.4.5-lts.1",
+    "node-fetch": "^3.3.1",
+    "node-localstorage": "^2.2.1",
+    "nodemon": "^2.0.22",
+    "sharp": "^0.32.0",
+    "sqlite3": "^5.1.6",
+    "swagger-ui-express": "^4.6.2",
+    "typeorm": "^0.3.12",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "eslint": "^8.38.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-jest": "^27.2.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "jest": "^29.5.0",
+    "jest-mock": "^29.5.0",
+    "prettier": "^2.8.7",
+    "supertest": "^6.3.3"
+  }
+}

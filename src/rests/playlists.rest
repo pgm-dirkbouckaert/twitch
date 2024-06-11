@@ -1,0 +1,93 @@
+@baseUrl = http://localhost:3000/api 
+
+# token for reader
+# @token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6InJlYWRlciIsImlhdCI6MTY4MDg1NzM4NywiZXhwIjoxNjgwOTQzNzg3fQ.HJCnHcH67AU5ZKHUp4DXjyQ1PFGeZXzj0nEYsSU4G04
+
+# token for teacher
+# @token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6InRlYWNoZXIiLCJpYXQiOjE2ODA4NTc0MTcsImV4cCI6MTY4MDk0MzgxN30.ENBKEewfz--h6sP7mozknHIkMy1w5sDLBH1Vmxs8xKw
+
+# token for admin
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywicm9sZSI6ImFkbWluIiwiaWF0IjoxNjgwOTU0OTA5LCJleHAiOjE2ODEwNDEzMDl9.JCdVbKK_hPMVi6zalfPKut-Ue9bUu48OajxrmwP3qwk
+
+# Get all playlists
+GET {{baseUrl}}/playlists HTTP/1.1
+Authorization: Bearer {{token}}
+
+###
+# Get a playlist by id
+GET {{baseUrl}}/playlists/21 HTTP/1.1
+Authorization: Bearer {{token}}
+
+###
+# Create a new playlist
+# Videos are not required. 
+# If so, provide an array of objects with video IDs.
+POST {{baseUrl}}/playlists HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+# {
+# 	"user_id": 63,
+# 	"name": "JavaScript Tutorials",
+# 	"videos": [{
+# 		"id": 170
+# 	}]
+# }
+
+{
+	"user_id": 63,
+	"name": "Test Playlist without videos"
+}
+
+###
+# Update a playlist
+PUT {{baseUrl}}/playlists HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+# {
+#   "id": 21,
+# 	"user_id": 63,
+# 	"name": "JavaScript Tutorials",
+# 	"videos": [{
+# 		"id": 170
+# 	}]
+# }
+
+# {
+#   "id": 24,
+# 	"user_id": 63,
+# 	"name": "Test 2 Complete update"
+# }
+
+{
+  "id": 18,
+	"user_id": 41,
+	"name": "Learn Tailwind Update"
+}
+
+###
+# Add a video to a playlist
+POST {{baseUrl}}/playlists/addVideo HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "playlist_id": 18,
+  "video_id": 178
+}
+
+# {
+#   "playlist_id": 25,
+#   "video_id": 173
+# }
+
+###
+# Delete a playlist
+DELETE {{baseUrl}}/playlists HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "id": 28
+}

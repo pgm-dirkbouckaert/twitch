@@ -1,0 +1,53 @@
+{{#ifEq type "select"}}
+
+  <div class="mb-3">
+    <label for="{{name}}" class="form-label">
+      {{label}} {{#if required}}<span class="color-primary">*</span>{{/if}}
+    </label>
+    {{#if instructions}}
+      <small>{{instructions}}</small>
+    {{/if}}
+    <select name="{{name}}" id="{{name}}" class="form-select"
+      {{#if disabled}}disabled{{/if}} {{#if readonly}}readonly{{/if}}>
+      <option value=""></option>
+      {{#ifEq name "topic_id"}}
+        {{#each options}}
+          <option value="{{id}}" {{#ifEq id @root.topicIdForForm}}selected{{/ifEq}}>{{name}}</option>
+        {{/each}}      
+      {{/ifEq}}
+      {{#ifEq name "user_id"}}
+        {{#each options}}
+          <option value="{{id}}" {{#ifEq id @root.userIdForForm}}selected{{/ifEq}}>{{usermeta.username}}</option>
+        {{/each}}
+      {{/ifEq}}
+      {{#ifEq name "role_id"}}
+        {{#each options}}
+          <option value="{{id}}" {{#ifEq id @root.roleIdForForm}}selected{{/ifEq}}>{{label}}</option>
+        {{/each}}
+      {{/ifEq}}
+    </select>
+    {{#if error}}
+      <div class="small text-danger">{{error}}</div>
+    {{/if}}
+  </div>
+
+{{else}}
+
+  <div class="mb-3">
+    {{#unless (isEq type "hidden")}}
+      <label for="{{name}}" class="form-label">
+        {{label}} {{#if required}}<span class="color-primary">*</span>{{/if}}
+      </label>
+    {{/unless}}
+    {{#if instructions}}
+      <div class="text-muted small">{{instructions}}</div>
+    {{/if}}
+    <input type="{{type}}" name="{{name}}" id="{{name}}" value="{{value}}" class="form-control"
+          {{#if disabled}}disabled{{/if}} {{#if readonly}}readonly{{/if}}>
+    {{#if error}}
+      <div class="small text-danger">{{error}}</div>
+    {{/if}}
+  </div>
+
+{{/ifEq}}
+

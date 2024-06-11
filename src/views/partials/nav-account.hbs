@@ -1,0 +1,22 @@
+<ul class="nav nav-tabs mt-3">
+  <li class="nav-item">
+    <a class="nav-link {{#ifEq action "view"}}active{{/ifEq}}" href="/account">View</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link {{#ifEq action "edit"}}active{{/ifEq}}" href="/account/edit">Edit</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link {{#ifEq action "avatar"}}active{{/ifEq}}" href="/account/avatar">Avatar</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link {{#ifEq action "password"}}active{{/ifEq}}" href="/account/password">Password</a>
+  </li>
+  {{#unless (isEq role "admin")}}
+    <li class="nav-item">
+      <a class="nav-link {{#ifEq action "apply"}}active{{/ifEq}}" href="/account/apply">
+        {{#if (isEq role "reader")}}Become a teacher{{/if}}
+        {{#if (isEq role "teacher")}}Become an admin{{/if}}
+      </a>
+    </li>
+  {{/unless}}
+</ul>

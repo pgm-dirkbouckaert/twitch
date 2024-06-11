@@ -1,0 +1,79 @@
+{{> modal}}
+
+<div class="row">
+  <div class="col"><h1>Dashboard</h1></div>
+  <div class="col d-flex flex-row justify-content-end align-items-center">
+    <a href="/admin/videos/create" class="btn btn-outline-success btn-sm">Add video</a>
+  </div>
+</div>
+
+{{> nav-admin}}
+
+{{!-- FILTER --}}
+<div class="col d-flex flex-row justify-content-start">
+  <form action="/admin/videos" method="get">
+    <div class="input-group">
+      <input type="text" name="topic" class="form-control" list="topicOptions" placeholder="Filter by topic">
+      <datalist id="topicOptions">
+        {{#each topics}}
+          <option value="{{name}}">
+        {{/each}}
+      </datalist>
+      <button class="btn btn-outline-secondary" class="btn btn-primary" type="submit">
+        Filter
+      </button>
+    </div>
+  </form>
+</div>
+
+{{!-- LIST --}}
+{{#ifEq videos.items.length 0}}
+
+  <div class="mt-5 text-primary text-center fs-3">No videos.</div>
+
+{{else}}
+
+  <div class="mb-1 d-flex justify-content-end">
+    {{> pageing videos.pageing prefix=admin/videos}}
+  </div>
+  <table class="table table-striped table-bordered table-sm">
+    <thead>
+      <tr>
+        <th width="25">ID</th>
+        {{#ifEq role "admin"}}<th width="150">Teacher</th>{{/ifEq}}
+        <th width="75">Topic</th>
+        <th>Title</th>
+        <th width="100">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each videos.items}}
+        <tr>
+          <td>{{id}}</td>
+          {{#ifEq @root.role "admin"}}
+          <td><a href="/teachers/{{user.id}}">{{user.usermeta.firstname}} {{user.usermeta.lastname}}</a></td>
+          {{/ifEq}}
+          <td><a href="/topics/{{topic.id}}">{{topic.name}}</a></td>
+          <td>{{name}}</td>
+          <td class="d-flex flex-row justify-content-between align-items-center px-2">
+            <i class="fa-regular fa-eye watch-video hover" role="button" 
+              data-youtube-id="{{youtube_id}}" data-title="{{name}}"
+              data-teacher="{{user.usermeta.firstname}} {{user.usermeta.lastname}}"
+              data-teacher-id="{{user.id}}"></i>
+            <a href="/admin/videos/{{id}}"><i class="fa-regular fa-pen-to-square hover" role="button"></i></a>
+            <i class="fa-regular fa-trash-can hover btn-delete" role="button" 
+               data-action="videos" data-name="{{name}}" data-id="{{id}}" 
+               data-current-page="{{@root.videos.pageing.currentPage}}"></i>
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+  <div class="mb-1 d-flex justify-content-end">
+    {{> pageing videos.pageing prefix=admin/videos}}
+  </div>
+
+{{/ifEq}}
+
+<script src="/js/watch-video.js"></script>
+<script src="/js/admin-delete.js"></script>

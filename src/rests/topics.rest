@@ -1,0 +1,72 @@
+@baseUrl = http://localhost:3000/api 
+
+# token for reader
+# @token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6InJlYWRlciIsImlhdCI6MTY4MDg1NzM4NywiZXhwIjoxNjgwOTQzNzg3fQ.HJCnHcH67AU5ZKHUp4DXjyQ1PFGeZXzj0nEYsSU4G04
+
+# token for teacher
+# @token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6InRlYWNoZXIiLCJpYXQiOjE2ODA3NzQyNDUsImV4cCI6MTY4MDg2MDY0NX0.DLMx8cPtpWtLxZkMYB12aj_Hy-P_UjqMd8sFnZFVMAQ
+
+# token for admin
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywicm9sZSI6ImFkbWluIiwiaWF0IjoxNjgwOTU0OTA5LCJleHAiOjE2ODEwNDEzMDl9.JCdVbKK_hPMVi6zalfPKut-Ue9bUu48OajxrmwP3qwk
+
+###
+# Get all topics
+GET {{baseUrl}}/topics HTTP/1.1
+Authorization: Bearer {{token}}
+
+
+###
+# Get a topic by id
+GET {{baseUrl}}/topics/16 HTTP/1.1
+Authorization: Bearer {{token}}
+
+
+###
+# Create a new topic
+POST {{baseUrl}}/topics HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: multipart/form-data; boundary=boundary
+
+--boundary
+Content-Disposition: form-data; name="name"
+
+Svelte
+--boundary
+Content-Disposition: form-data; name="icon"; filename="image.jpg"
+Content-Type: image/png
+
+< C:\Users\Dirk\Desktop\svelte.png
+--boundary--
+
+
+###
+# Update a topic
+PUT {{baseUrl}}/topics HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: multipart/form-data; boundary=boundary
+
+--boundary
+Content-Disposition: form-data; name="id"
+
+37
+--boundary
+Content-Disposition: form-data; name="name"
+
+Svelte Update
+--boundary
+Content-Disposition: form-data; name="icon"; filename="image.jpg"
+Content-Type: image/png
+
+< C:\Users\Dirk\Desktop\svelte-update.png
+--boundary--
+
+
+###
+# Delete a topic
+DELETE {{baseUrl}}/topics HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "id": 38
+}
